@@ -9,6 +9,11 @@ int age_arr[]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int age_len = 10;
 int counter = 0;
 
+int findSmallest();
+void addTo_LRU(int);
+int remove_LRU();
+void print_LRU();
+
 int findSmallest() {
   int i, min_index = 0, min_age = MAX;
   for(i=0; i < age_len; i++) {
@@ -28,6 +33,8 @@ void addTo_LRU(int x)
   counter++;
   lru[frame] = x;
   age_arr[frame] = counter;
+  
+  print_LRU();
 
 }
 
@@ -38,7 +45,8 @@ int remove_LRU()
   int frame = findSmallest();
   int removed = lru[frame];
   lru[frame] = 0;
-  age_arr[frame] = 0;
+  counter++;
+  age_arr[frame] = counter;
 
   return removed;
 }
